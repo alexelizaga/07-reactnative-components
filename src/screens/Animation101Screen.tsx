@@ -1,9 +1,10 @@
-import React, { useRef, useState } from 'react';
-import { View, StyleSheet,  Animated, Button } from 'react-native';
+import React, { useRef } from 'react';
+import { View, StyleSheet,  Animated, Button, Easing } from 'react-native';
 
 export const Animation101Screen = () => {
 
   const opacity = useRef(new Animated.Value(0)).current;
+  const top = useRef(new Animated.Value(-100)).current;
 
   const fadeIn = () => {
     Animated.timing(
@@ -12,6 +13,15 @@ export const Animation101Screen = () => {
         toValue: 1,
         duration: 300,
         useNativeDriver: true
+      }
+    ).start();
+    Animated.timing(
+      top,
+      {
+        toValue: 0,
+        duration: 700,
+        useNativeDriver: true,
+        easing: Easing.bounce
       }
     ).start();
   }
@@ -25,11 +35,24 @@ export const Animation101Screen = () => {
         useNativeDriver: true
       }
     ).start();
+    Animated.timing(
+      top,
+      {
+        toValue: -100,
+        duration: 800,
+        useNativeDriver: true,
+        easing: Easing.bounce
+      }
+    ).start();
   }
 
   return (
     <View style={styles.conatiner}>
-      <Animated.View style={[styles.purpleBox, {opacity: opacity}]} />
+      <Animated.View style={[styles.purpleBox, {
+        opacity: opacity, transform: [{
+          translateY: top
+        }]
+      }]} />
       <Button
         title='Fade In'
         onPress={fadeIn}
@@ -52,6 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#5856D6',
     width: 150,
     height: 150,
-    marginBottom: 20
+    marginBottom: 20,
+    position: 'relative'
   }
 });
