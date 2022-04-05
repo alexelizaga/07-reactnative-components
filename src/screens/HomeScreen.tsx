@@ -1,15 +1,10 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { globalStyles } from '../theme/appTheme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-
-interface MenuItem {
-  name: string;
-  icon: any;
-  component: string;
-}
+import { FlatListMenuItem } from '../components/FlatListMenuItem';
+import { MenuItem } from '../interfaces/appInterface';
 
 const menuItems: MenuItem[] = [
   {
@@ -27,14 +22,6 @@ const menuItems: MenuItem[] = [
 export const HomeScreen = () => {
 
   const {top} = useSafeAreaInsets();
-  const renderMenuItem = ( menuItem: MenuItem) => {
-    return (
-      <View style={ styles.menuItemContainer}>
-        <Ionicons name={menuItem.icon} size={16} color="green" />
-        <Text> {menuItem.name}</Text>
-      </View>
-    )
-  }
 
   const renderListHeader = () => {
     return (
@@ -60,7 +47,7 @@ export const HomeScreen = () => {
     <View style={[ styles.container, globalStyles.margin ]}>
       <FlatList
         data={menuItems}
-        renderItem={({item}) => renderMenuItem(item)}
+        renderItem={({item}) => <FlatListMenuItem menuItem={item} />}
         keyExtractor={ (item) => item.name }
         ListHeaderComponent={renderListHeader}
         ItemSeparatorComponent={itemSeparator}
