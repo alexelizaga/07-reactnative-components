@@ -9,12 +9,11 @@ export const SwitchScreen = () => {
   return (
     <View style={styles.container}>
       <Switch
-        trackColor={{ false: "#a5a5a5", true: colors.primaryLight }}
         {
           ...Platform.select({
-            ios: { thumbColor: "#f4f3f4" },
             android: { 
               thumbColor: (isEnabled) ? colors.primary : "white",
+              trackColor:{ false: "#a5a5a5", true: colors.primaryLight }
             },
             web: {
               activeThumbColor: colors.primary,
