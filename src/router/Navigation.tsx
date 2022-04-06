@@ -9,12 +9,12 @@ const Stack = createStackNavigator();
 export const Navigation = () => {
   return (
     <Stack.Navigator screenOptions={{
-      headerShown: false,
+      headerShown: true,
       cardStyle: { backgroundColor: 'white' }
     }}>
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
-      <Stack.Screen name="Animation101Screen" component={Animation101Screen} />
-      <Stack.Screen name="Animation102Screen" component={Animation102Screen} />
+      <Stack.Screen name="HomeScreen" options={{ title: 'Home'}} component={HomeScreen} />
+      <Stack.Screen name="Animation101Screen" options={{ title: 'Animation 101'}} component={Animation101Screen} />
+      <Stack.Screen name="Animation102Screen" options={{ title: 'Animation 102'}} component={Animation102Screen} />
     </Stack.Navigator>
   );
 }
