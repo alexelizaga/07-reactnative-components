@@ -1,29 +1,57 @@
 import React, {useState} from 'react';
-import { View, Switch, StyleSheet, Platform } from 'react-native';
+import { View, Switch, StyleSheet, Platform, Text } from 'react-native';
 import { colors } from '../theme/appTheme';
+import { HeaderTitle } from '../components/HeaderTitle';
+import { CustomSwitch } from '../components/CustomSwitch';
 
 export const SwitchScreen = () => {
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+  type State = {
+    isActive: boolean,
+    isHungry: boolean,
+    isHappy: boolean
+  };
+
+  const [state, setState] = useState<State>({
+    isActive: true,
+    isHungry: false,
+    isHappy: true
+  });
+
+  const onChange = ( value: boolean, field: keyof State ) => {
+    setState({
+      ...state,
+      [field]: value
+    });
+  };
+
+  const { isActive, isHappy, isHungry } = state;
 
   return (
     <View style={styles.container}>
-      <Switch
+      <HeaderTitle title='Switches' />
+
+      <View style={styles.switchRow}>
+        <Text style={styles.switchText}>isActive</Text>
+        <CustomSwitch isOn={isActive} onChange={(value) => onChange(value,'isActive')}/>
+      </View>
+
+      <View style={styles.switchRow}>
+        <Text style={styles.switchText}>isHungry</Text>
+        <CustomSwitch isOn={isHungry} onChange={(value) => onChange(value,'isHungry')}/>
+      </View>
+
+      <View style={styles.switchRow}>
+        <Text style={styles.switchText}>isHappy</Text>
+        <CustomSwitch isOn={isHappy} onChange={(value) => onChange(value,'isHappy')}/>
+      </View>
+      
+
+      <Text style={ styles.switchState }>
         {
-          ...Platform.select({
-            android: { 
-              thumbColor: (isEnabled) ? colors.primary : "white",
-              trackColor:{ false: "#a5a5a5", true: colors.primaryLight }
-            },
-            web: {
-              activeThumbColor: colors.primary,
-              thumbColor: "white",
-            }
-          })
+          JSON.stringify(state, null, 5)
         }
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-      />
+      </Text>
     </View>
   )
 }
@@ -31,7 +59,19 @@ export const SwitchScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    marginHorizontal: 20,
+  },
+  switchRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 10
+  },
+  switchText: {
+    fontSize: 25
+  },
+  switchState: {
+    marginTop: 50,
+    fontSize: 25
   }
 });
