@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginBottom: 10
+    marginVertical: 10
   },
   switchText: {
     fontSize: 25
