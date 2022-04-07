@@ -6,6 +6,7 @@ import { Animation102Screen } from '../screens/Animation102Screen';
 import { SwitchScreen } from '../screens/SwitchScreen';
 import { colors } from '../theme/appTheme';
 import { AlertScreen } from '../screens/AlertScreen';
+import { TextInputScreen } from '../screens/TextInputScreen';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ export const Navigation = () => {
       <Stack.Screen name="Animation102Screen" options={{ title: 'Animation 102'}} component={Animation102Screen} />
       <Stack.Screen name="SwitchScreen" options={{ title: 'Switch'}} component={SwitchScreen} />
       <Stack.Screen name="AlertScreen" options={{ title: 'Alert'}} component={AlertScreen} />
+      <Stack.Screen name="TextInputScreen" options={{ title: 'Alert'}} component={TextInputScreen} />
     </Stack.Navigator>
   );
 }
