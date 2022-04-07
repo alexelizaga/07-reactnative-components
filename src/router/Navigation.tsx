@@ -22,7 +22,7 @@ export const Navigation = () => {
       <Stack.Screen name="Animation102Screen" options={{ title: 'Animation 102'}} component={Animation102Screen} />
       <Stack.Screen name="SwitchScreen" options={{ title: 'Switch'}} component={SwitchScreen} />
       <Stack.Screen name="AlertScreen" options={{ title: 'Alert'}} component={AlertScreen} />
-      <Stack.Screen name="TextInputScreen" options={{ title: 'Alert'}} component={TextInputScreen} />
+      <Stack.Screen name="TextInputScreen" options={{ title: 'Text Input'}} component={TextInputScreen} />
     </Stack.Navigator>
   );
 }

@@ -1,28 +1,20 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import React from 'react';
+import { View, Text, TextInput, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { HeaderTitle } from '../components/HeaderTitle';
 import { globalStyles } from '../theme/appTheme';
+import { useForm } from '../hooks/useForm';
+import { CustomSwitch } from '../components/CustomSwitch';
 
 export const TextInputScreen = () => {
-  interface FormState {
-    name: string;
-    email: string;
-    phone: string;
-  }
-  const [form, setForm] = useState<FormState>({
+
+  const { onChange, form, isSubscribed} = useForm({
     name: '',
     email: '',
     phone: '',
+    isSubscribed: false,
   });
-
-  const onChange = ( value:string, field: keyof FormState ) => {
-    setForm({
-      ...form,
-      [field]:value
-    });
-  }
 
   return (
     <KeyboardAvoidingView
@@ -56,6 +48,11 @@ export const TextInputScreen = () => {
               keyboardType="phone-pad"
             />
 
+            <View style={styles.switchRow}>
+              <Text style={styles.switchText}>Subscribirme</Text>
+              <CustomSwitch isOn={isSubscribed} onChange={(value) => onChange(value,'isSubscribed')}/>
+            </View>
+
             <View>
               <Text>{ JSON.stringify(form, null, 5)}</Text>
             </View>
@@ -79,5 +76,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: 'rgba(0,0,0,0.3)',
     marginVertical: 10
+  },
+  switchRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginVertical: 10
+  },
+  switchText: {
+    fontSize: 25
+  },
+  switchState: {
+    marginTop: 50,
+    fontSize: 25
   }
 });
