@@ -7,6 +7,7 @@ import { SwitchScreen } from '../screens/SwitchScreen';
 import { colors } from '../theme/appTheme';
 import { AlertScreen } from '../screens/AlertScreen';
 import { TextInputScreen } from '../screens/TextInputScreen';
+import { PullToRefreshScreeen } from '../screens/PullToRefreshScreen';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,7 @@ export const Navigation = () => {
       <Stack.Screen name="SwitchScreen" options={{ title: 'Switch'}} component={SwitchScreen} />
       <Stack.Screen name="AlertScreen" options={{ title: 'Alert'}} component={AlertScreen} />
       <Stack.Screen name="TextInputScreen" options={{ title: 'Text Input'}} component={TextInputScreen} />
+      <Stack.Screen name="PullToRefreshScreen" options={{ title: 'Pull to refresh'}} component={PullToRefreshScreeen} />
     </Stack.Navigator>
   );
 }
