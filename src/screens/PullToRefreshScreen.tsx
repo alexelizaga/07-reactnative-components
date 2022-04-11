@@ -17,7 +17,7 @@ export const PullToRefreshScreeen = () => {
       console.log('Terminamos');
       setRefreshing(false);
       setData('Hola mundo');
-    }, 15000);
+    }, 1500);
   }
 
   return (
