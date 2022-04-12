@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image, ActivityIndicator } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { HeaderTitle } from '../components/HeaderTitle';
+import { colors } from '../theme/appTheme';
 
 export const InfiniteScrollScreen = () => {
 
@@ -13,14 +14,22 @@ export const InfiniteScrollScreen = () => {
     for(let i=0; i<5; i++){
       newArray[i] = numbers.length + i;
     }
-    setNumbers([...numbers, ...newArray]);
+
+    setTimeout(() => {
+      setNumbers([...numbers, ...newArray]);
+    }, 1500);
+
   }
 
   const renderItem = ( item: number ) => {
     return(
-      <Text style={ styles.textItem }>
-        {item}
-      </Text>
+      <Image
+        source={{ uri: `https://picsum.photos/id/${item}/500/400` }}
+        style= {{
+          width:'100%',
+          height: 400
+        }}
+      />
     )
   }
 
@@ -34,6 +43,16 @@ export const InfiniteScrollScreen = () => {
         showsVerticalScrollIndicator={false}
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
+        ListFooterComponent={() => (
+          <View style={{
+            height:150,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }}>
+            <ActivityIndicator size={25} color={colors.primary} />
+          </View>
+        )}
       />
     </View>
   )
