@@ -13,6 +13,9 @@ export const globalStyles = StyleSheet.create({
   margin: {
     marginHorizontal: 20
   },
+  padding: {
+    paddingHorizontal:20
+  },
   title: {
     fontSize: 35,
     fontWeight: 'bold'
