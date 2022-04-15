@@ -9,9 +9,9 @@ import { AlertScreen } from '../screens/AlertScreen';
 import { TextInputScreen } from '../screens/TextInputScreen';
 import { PullToRefreshScreeen } from '../screens/PullToRefreshScreen';
 import { SectionListScreen } from '../screens/SectionListScreen';
-import { Prueba } from '../screens/Prueba';
 import { ModalScreen } from '../screens/ModalScreen';
 import { InfiniteScrollScreen } from '../screens/InfiniteScrollScreen';
+import { SlidesScreen } from '../screens/SlidesScreen';
 
 const Stack = createStackNavigator();
 
@@ -32,6 +32,7 @@ export const Navigation = () => {
       <Stack.Screen name='SectionListScreen' options={{title: 'Section list'}} component={SectionListScreen} />
       <Stack.Screen name='ModalScreen' options={{title: 'Modal'}} component={ModalScreen} />
       <Stack.Screen name='InfiniteScrollScreen' options={{title: 'Infinite Scroll'}} component={InfiniteScrollScreen} />
+      <Stack.Screen name='SlidesScreen' options={{title: 'Slides'}} component={SlidesScreen} />
     </Stack.Navigator>
   );
 }
