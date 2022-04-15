@@ -3,7 +3,7 @@ import { View, ActivityIndicator } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { FadeInImage } from '../components/FadeInImage';
 import { HeaderTitle } from '../components/HeaderTitle';
-import { colors } from '../theme/appTheme';
+import { colors, globalStyles } from '../theme/appTheme';
 
 export const InfiniteScrollScreen = () => {
 
@@ -24,7 +24,13 @@ export const InfiniteScrollScreen = () => {
 
   const renderItem = ( item: number ) => {
     return(
-      <FadeInImage uri={`https://picsum.photos/id/${item}/1024/1024`} />
+      <FadeInImage
+        uri={`https://picsum.photos/id/${item}/1024/1024`}
+        style={{
+          width: '100%',
+          height: 400,
+        }}
+      />
     )
   }
 
@@ -34,7 +40,11 @@ export const InfiniteScrollScreen = () => {
         data={numbers}
         keyExtractor={(item) => item.toString()}
         renderItem={ ({item}) => renderItem(item) }
-        ListHeaderComponent={() => <HeaderTitle title='Infinite Scroll' />}
+        ListHeaderComponent={() => (
+          <View style={globalStyles.margin}>
+            <HeaderTitle title='Infinite Scroll' />
+          </View>
+        )}
         showsVerticalScrollIndicator={false}
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
