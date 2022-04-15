@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
-import { View, Text, ImageSourcePropType, Image, StyleSheet, Dimensions } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, Text, ImageSourcePropType, Image, StyleSheet, Dimensions, Animated, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { colors } from '../theme/appTheme';
+import { useAnimation } from '../hooks/useAnimation';
+import { StackScreenProps } from '@react-navigation/stack';
 
-const { height: screenheight, width: screenWidth } = Dimensions.get('window');
+const { width: screenWidth } = Dimensions.get('window');
 
 interface Slide {
   title: string;
@@ -30,11 +34,19 @@ const items: Slide[] = [
   },
 ]
 
-export const TutorialCarousel = () => {
+interface Props extends StackScreenProps<any,any>{};
+
+export const TutorialCarousel = ({ navigation }:Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const { opacity, fadeIn} = useAnimation();
+  const isVisible = useRef(false);
 
   const OnIndexChange = (index: number) => {
     setActiveIndex(index);
+    if(index === 2) {
+      isVisible.current = true;
+      fadeIn();
+    };
   }
 
   const renderItem = (item: Slide) => {
@@ -63,25 +75,73 @@ export const TutorialCarousel = () => {
   return (
     <>
       <Carousel
-        // ref={(c) => { this._carousel = c; }}
         data={items}
         renderItem={ ({item}) => renderItem(item) }
         sliderWidth={screenWidth}
         itemWidth={screenWidth}
         layout={'default'}
-        onSnapToItem={ (index) => OnIndexChange(index) }
-      />
-
-      <Pagination
-        activeDotIndex={activeIndex}
-        dotsLength={items.length}
-        dotStyle={{
-          width: 10,
-          height: 10,
-          borderRadius: 10,
-          backgroundColor: colors.primary
+        onSnapToItem={ (index) => {
+          OnIndexChange(index);
         }}
       />
+
+      <View style={{
+        flexDirection:'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginHorizontal: 20
+      }}>
+        <Pagination
+          activeDotIndex={activeIndex}
+          dotsLength={items.length}
+          dotStyle={{
+            width: 10,
+            height: 10,
+            borderRadius: 10,
+            backgroundColor: colors.primary
+          }}
+        />
+        {
+          isVisible && (
+            <Animated.View
+              style={{
+                opacity
+              }}
+            >
+              <TouchableOpacity
+                onPress={() => {
+                  if(isVisible.current){
+                    navigation.navigate('HomeScreen');
+                  }
+                  
+                }}
+                style={{
+                  flexDirection: 'row',
+                  backgroundColor: colors.primary,
+                  width: 140,
+                  height: 50,
+                  borderRadius: 10,
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+                activeOpacity={0.8}
+              >
+                <Text style={{
+                  fontSize: 20,
+                  color: 'white'
+                }}>
+                  Entrar
+                </Text>
+                <Ionicons
+                  name='chevron-forward-outline'
+                  size={30}
+                  color={'white'}
+                />
+              </TouchableOpacity>
+            </Animated.View>
+          )
+        }
+      </View>
     </>
   )
 }
