@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import { FadeInImage } from '../components/FadeInImage';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { colors } from '../theme/appTheme';
 
@@ -23,18 +24,12 @@ export const InfiniteScrollScreen = () => {
 
   const renderItem = ( item: number ) => {
     return(
-      <Image
-        source={{ uri: `https://picsum.photos/id/${item}/500/400` }}
-        style= {{
-          width:'100%',
-          height: 400
-        }}
-      />
+      <FadeInImage uri={`https://picsum.photos/id/${item}/1024/1024`} />
     )
   }
 
   return (
-    <View style={{flex:1, backgroundColor: 'red'}}>
+    <View style={{flex:1}}>
       <FlatList
         data={numbers}
         keyExtractor={(item) => item.toString()}
@@ -57,10 +52,3 @@ export const InfiniteScrollScreen = () => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  textItem: {
-    backgroundColor: 'green',
-    height: 150
-  }
-});
