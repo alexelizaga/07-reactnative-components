@@ -5,6 +5,7 @@ import { NavigationContainer, DefaultTheme, DarkTheme, Theme } from '@react-navi
 import { Navigation } from './src/router/Navigation';
 import { useState } from 'react';
 import { TutorialCarousel } from './src/components/TutorialCarousel';
+import { ThemeProvider } from './src/context/theme/ThemeContest';
 
 const customTheme: Theme = {
   dark: true,
@@ -27,17 +28,28 @@ const App = () => {
   }
 
   if(isTutorialEnabled){
-    return (<TutorialCarousel action={OnChange} />)
+    return (
+      <AppState>
+        <TutorialCarousel action={OnChange} />
+      </AppState>
+    )
   }
 
   return (
-    <NavigationContainer
-      theme={ customTheme }
-    >
-      <Navigation />
-      <StatusBar style="auto" />
-    </NavigationContainer>
+    <AppState>
+        <Navigation />
+        <StatusBar style="auto" />
+    </AppState>
   );
+}
+
+const AppState = ( {children}: any ) => {
+
+  return (
+    <ThemeProvider>
+      { children }
+    </ThemeProvider>
+  )
 }
 
 export default App;
