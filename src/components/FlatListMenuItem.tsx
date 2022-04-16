@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useNavigation, useTheme } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { MenuItem } from '../interfaces/appInterface';
+import { ThemeContext } from '../context/theme/ThemeContest';
 
 interface Props {
   menuItem: MenuItem;
@@ -11,7 +12,7 @@ interface Props {
 
 export const FlatListMenuItem = ({ menuItem }: Props) => {
   const navigation = useNavigation();
-  const {colors} = useTheme();
+  const { theme: {colors} } = useContext(ThemeContext);
 
   return (
     <TouchableOpacity
