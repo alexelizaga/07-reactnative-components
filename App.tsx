@@ -9,7 +9,7 @@ import { TutorialCarousel } from './src/components/TutorialCarousel';
 const customTheme: Theme = {
   dark: true,
   colors: {
-    ...DarkTheme.colors
+    ...DefaultTheme.colors
     // primary: 'string',
     // background: 'string',
     // card: 'string',
