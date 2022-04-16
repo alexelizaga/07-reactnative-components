@@ -24,4 +24,3 @@ export const globalStyles = StyleSheet.create({
     marginVertical: 5
   }
 });
-

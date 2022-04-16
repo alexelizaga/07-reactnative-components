@@ -4,14 +4,12 @@ import { HomeScreen } from '../screens/HomeScreen';
 import { Animation101Screen } from '../screens/Animation101Screen';
 import { Animation102Screen } from '../screens/Animation102Screen';
 import { SwitchScreen } from '../screens/SwitchScreen';
-import { colors } from '../theme/appTheme';
 import { AlertScreen } from '../screens/AlertScreen';
 import { TextInputScreen } from '../screens/TextInputScreen';
 import { PullToRefreshScreeen } from '../screens/PullToRefreshScreen';
 import { SectionListScreen } from '../screens/SectionListScreen';
 import { ModalScreen } from '../screens/ModalScreen';
 import { InfiniteScrollScreen } from '../screens/InfiniteScrollScreen';
-import { SlidesScreen } from '../screens/SlidesScreen';
 
 const Stack = createStackNavigator();
 
@@ -19,8 +17,6 @@ export const Navigation = () => {
   return (
     <Stack.Navigator screenOptions={{
       headerShown: true,
-      headerTintColor: colors.primary,
-      cardStyle: { backgroundColor: 'white' }
     }}>
       <Stack.Screen name="HomeScreen" options={{ title: 'Home'}} component={HomeScreen} />
       <Stack.Screen name="Animation101Screen" options={{ title: 'Animation 101'}} component={Animation101Screen} />
@@ -32,7 +28,6 @@ export const Navigation = () => {
       <Stack.Screen name='SectionListScreen' options={{title: 'Section list'}} component={SectionListScreen} />
       <Stack.Screen name='ModalScreen' options={{title: 'Modal'}} component={ModalScreen} />
       <Stack.Screen name='InfiniteScrollScreen' options={{title: 'Infinite Scroll'}} component={InfiniteScrollScreen} />
-      <Stack.Screen name='SlidesScreen' options={{title: 'Slides'}} component={SlidesScreen} />
     </Stack.Navigator>
   );
 }

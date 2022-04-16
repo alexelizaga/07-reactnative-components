@@ -1,42 +1,19 @@
 import React, { useState, useRef } from 'react';
-import { View, Text, ImageSourcePropType, Image, StyleSheet, Dimensions, Animated, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, Image, StyleSheet, Dimensions, Animated, TouchableOpacity } from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { colors } from '../theme/appTheme';
 import { useAnimation } from '../hooks/useAnimation';
-import { StackScreenProps } from '@react-navigation/stack';
+import { items, Slide } from '../data/carouselItems';
 
 const { width: screenWidth } = Dimensions.get('window');
 
-interface Slide {
-  title: string;
-  desc: string;
-  img: ImageSourcePropType
-}
+interface Props {
+  action: () => {}
+};
 
-const items: Slide[] = [
-  {
-      title: 'Titulo 1',
-      desc: 'Ea et eu enim fugiat sunt reprehenderit sunt aute quis tempor ipsum cupidatat et.',
-      img: require('../assets/slide-1.png')
-  },
-  {
-      title: 'Titulo 2',
-      desc: 'Anim est quis elit proident magna quis cupidatat culpa labore Lorem ea. Exercitation mollit velit in aliquip tempor occaecat dolor minim amet dolor enim cillum excepteur. ',
-      img: require('../assets/slide-2.png')
-  },
-  {
-      title: 'Titulo 3',
-      desc: 'Ex amet duis amet nulla. Aliquip ea Lorem ea culpa consequat proident. Nulla tempor esse ad tempor sit amet Lorem. Velit ea labore aute pariatur commodo duis veniam enim.',
-      img: require('../assets/slide-3.png')
-  },
-]
-
-interface Props extends StackScreenProps<any,any>{};
-
-export const TutorialCarousel = ({ navigation }:Props) => {
+export const TutorialCarousel = ({ action }:Props) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const { opacity, fadeIn} = useAnimation();
   const isVisible = useRef(false);
@@ -111,7 +88,7 @@ export const TutorialCarousel = ({ navigation }:Props) => {
               <TouchableOpacity
                 onPress={() => {
                   if(isVisible.current){
-                    navigation.navigate('HomeScreen');
+                    action();
                   }
                   
                 }}
