@@ -16,12 +16,10 @@ export const ThemeProvider = ({ children }: any) => {
 
   const setDarkTheme = () => {
     dispatch({ type: 'set_dark_theme' });
-    console.log('Set dark theme');
   };
 
   const setLightTheme = () => {
     dispatch({ type: 'set_light_theme' });
-    console.log('Set light theme');
   };
 
   return(

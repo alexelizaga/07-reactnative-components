@@ -14,6 +14,18 @@ export const TutorialCarousel = ({ action }:Props) => {
     return (
       <View style={{
         flex:1,
+        marginHorizontal: 20,
+        marginVertical: 10,
+        padding: 20,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
       }}>
         <Image
           source={ item.img }
@@ -24,13 +36,19 @@ export const TutorialCarousel = ({ action }:Props) => {
           }}
         />
         <Text style={styles.title}>{ item.title }</Text>
-        <Text style={styles.subTitle}>{ item.desc }</Text>
+        <Text style={[styles.subTitle, {width: 350}]}>{ item.desc }</Text>
       </View>
     )
   }
 
   return (
-    <View style={{flex:1, justifyContent: 'center', alignItems:'center', padding: 20}}>
+    <View
+      style={{
+        flex:1,
+        justifyContent: 'center',
+        paddingVertical: 20,
+      }}
+    >
       <FlatList
         data={items}
         renderItem={ ({item}) => renderItem(item) }
@@ -48,7 +66,9 @@ export const TutorialCarousel = ({ action }:Props) => {
           height: 50,
           borderRadius: 10,
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
+          alignSelf: 'center',
+          marginTop: 20
         }}
       >
         <Text style={{
@@ -74,6 +94,7 @@ const styles = StyleSheet.create({
     color: colors.primary
   },
   subTitle: {
+    marginTop: 10,
     fontSize: 16
   }
 });

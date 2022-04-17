@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+
 import { FadeInImage } from '../components/FadeInImage';
 import { HeaderTitle } from '../components/HeaderTitle';
-import { colors, globalStyles } from '../theme/appTheme';
+import { globalStyles } from '../theme/appTheme';
+import { ThemeContext } from '../context/theme/ThemeContest';
 
 export const InfiniteScrollScreen = () => {
 
+  const { theme: {colors} } = useContext(ThemeContext);
   const [numbers, setNumbers] = useState([0,1,2,3,4,5])
 
   const loadMore = () => {

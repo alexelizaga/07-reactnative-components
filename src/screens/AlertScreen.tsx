@@ -1,25 +1,40 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { View, Button, Alert, Platform } from 'react-native';
 import AwesomeAlert from 'react-native-awesome-alerts';
 
 import { HeaderTitle } from '../components/HeaderTitle';
 import { globalStyles } from '../theme/appTheme';
+import { ThemeContext } from '../context/theme/ThemeContest';
 
 interface AlertState {
   showAlert: boolean
 }
 export const AlertScreen = () => {
 
+  const { theme:{colors} } = useContext(ThemeContext);
   const [state, setState] = useState<AlertState>({showAlert: false});
 
-  const hideAlert = () => {
+  const showWebAlert = () => {
+    setState({
+      showAlert: true
+    });
+  }
+
+  const cancelWebAlert = () => {
     setState({
       showAlert: false
     });
-    console.log('Ok/Cancel/Dismiss pressed');
+    console.log('Cancel/Dismiss pressed');
   };
 
-  const showAlert1 = () => {
+  const confirmWebAlert = () => {
+    setState({
+      showAlert: false
+    });
+    console.log('Ok pressed');
+  };
+
+  const showNativeAlert = () => {
     Alert.alert(
       'Title',
       'Este es el mensaje de la alerta',
@@ -38,13 +53,7 @@ export const AlertScreen = () => {
     )
   }
 
-  const showAlert2 = () => {
-    setState({
-      showAlert: true
-    });
-  }
-
-  const showAlert3 = () => {
+  const showPromptAlert = () => {
     Alert.prompt(
       '¿Está seguro?',
       'Esta acción no se puede revertir',
@@ -55,24 +64,30 @@ export const AlertScreen = () => {
     );
   }
 
-  const {showAlert} = state;
+  const { showAlert } = state;
 
   return (
     <View style={[ globalStyles.container, globalStyles.margin]}>
       <HeaderTitle title='Alerts' />
 
-      <View style={globalStyles.btn}>
+      <View style={{flex:1, justifyContent: 'center', alignItems: 'center' }}>
         <Button
-          title='Mostrar Alerta'
-          onPress={ (Platform.OS === 'web') ? showAlert2 : showAlert1 }
+          title='Show alert'
+          onPress={ (Platform.OS === 'web') ? showWebAlert : showNativeAlert }
+          color={colors.primary}
         />
-      </View>
 
-      <View style={globalStyles.btn}>
-        <Button
-          title='Mostrar Promp'
-          onPress={ showAlert3 }
-        />
+        {
+          Platform.OS === 'ios' && (
+            <View style={{marginTop: 10}}>
+              <Button
+                title='Show promp alert'
+                onPress={ showPromptAlert }
+                color={colors.primary}
+              />
+            </View>
+          )
+        }
       </View>
 
       <AwesomeAlert
@@ -80,20 +95,21 @@ export const AlertScreen = () => {
         showProgress={false}
         title="AwesomeAlert"
         message="I have a message for you!"
-        closeOnTouchOutside={true}
+        closeOnTouchOutside={false}
         closeOnHardwareBackPress={false}
         showCancelButton={true}
         showConfirmButton={true}
         cancelText="Cancel"
         confirmText="Ok"
-        confirmButtonColor="#DD6B55"
+        confirmButtonColor={colors.primary}
         onCancelPressed={() => {
-          hideAlert();
+          cancelWebAlert();
         }}
         onConfirmPressed={() => {
-          hideAlert();
+          confirmWebAlert();
         }}
       />
+
     </View>
   )
 }

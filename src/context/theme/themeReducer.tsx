@@ -12,7 +12,7 @@ export interface ThemeState extends Theme {
 export const lightTheme: ThemeState = {
   currentTheme: 'light',
   dark: false,
-  dividerColor: 'rgba(0,0,0,0.7)',
+  dividerColor: 'rgba(0,0,0,0.4)',
   colors: {
     ...DefaultTheme.colors,
     primary: '#5956cb',
@@ -27,11 +27,11 @@ export const lightTheme: ThemeState = {
 export const darkTheme: ThemeState = {
   currentTheme: 'dark',
   dark: true,
-  dividerColor: 'rgba(0,0,0,0.7)',
+  dividerColor: 'rgba(255,255,255,0.4)',
   colors: {
     ...DarkTheme.colors,
     primary: '#5956cb',
-    // background: 'string',
+    background: 'rgb(18,18,18)',
     // card: 'string',
     // text: 'string',
     // border: 'string',

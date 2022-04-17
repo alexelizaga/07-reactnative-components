@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, ScrollView, RefreshControl, useWindowDimensions, Platform } from 'react-native';
-import { HeaderTitle } from '../components/HeaderTitle';
-import { globalStyles, colors } from '../theme/appTheme';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { HeaderTitle } from '../components/HeaderTitle';
+import { globalStyles } from '../theme/appTheme';
+import { ThemeContext } from '../context/theme/ThemeContest';
+
 export const PullToRefreshScreeen = () => {
+  const { theme:{colors} } = useContext(ThemeContext);
   const [refreshing, setRefreshing] = useState(false);
   const [data, setData] = useState<string>()
   const { height } = useWindowDimensions();
@@ -27,19 +30,17 @@ export const PullToRefreshScreeen = () => {
           refreshing={refreshing}
           onRefresh={onRefresh}
           progressViewOffset={0.4*height}
-          // progressBackgroundColor={colors.primary}
-          colors={[ colors.primaryLight, colors.primary ]}
-          // style={{ backgroundColor:colors.primary }}
-          // tintColor={'white'}
+          progressBackgroundColor={ colors.primary }
+          colors={[ colors.background ]}
           title={'Refreshing'}
         />
       }
     >
       <View style={globalStyles.margin}>
         <HeaderTitle title='Pull to refresh' />
-        <Text>PullToRefreshScreeen</Text>
+        <Text style={{ color: colors.text }}>PullToRefreshScreeen</Text>
         {
-          data && <Text>{data}</Text>
+          data && <Text style={{ color: colors.text }}>{data}</Text>
         }
       </View>
     </ScrollView>

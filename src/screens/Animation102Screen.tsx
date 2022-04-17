@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, StyleSheet, Animated, PanResponder } from 'react-native';
 import { useAnimation } from '../hooks/useAnimation';
+import { ThemeContext } from '../context/theme/ThemeContest';
 
 export const Animation102Screen = () => {
+  const { theme:{colors} } = useContext(ThemeContext);
   const { pan, panResponder } = useAnimation();
 
   return (
     <View style={styles.container}>
       <Animated.View
         {...panResponder.panHandlers}
-        style={[pan.getLayout(), styles.box]}
+        style={[pan.getLayout(), styles.box, {backgroundColor: colors.primary}]}
       />
     </View>
   )
@@ -22,7 +24,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   box: {
-    backgroundColor: "#61dafb",
     width: 150,
     height: 150,
     borderRadius: 4,
