@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from 'react';
-import { View, Text, Image, StyleSheet, Dimensions, Animated, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, Dimensions, Animated, TouchableOpacity, SafeAreaView } from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
@@ -32,7 +32,7 @@ export const TutorialCarousel = ({ action }:Props) => {
     return (
       <View style={{
         flex:1,
-        backgroundColor:'white',
+        backgroundColor: colors.background,
         borderRadius: 5,
         padding: 40,
         justifyContent: 'center'
@@ -46,13 +46,13 @@ export const TutorialCarousel = ({ action }:Props) => {
           }}
         />
         <Text style={[styles.title, {color: colors.primary}]}>{ item.title }</Text>
-        <Text style={styles.subTitle}>{ item.desc }</Text>
+        <Text style={[styles.subTitle, {color: colors.text}]}>{ item.desc }</Text>
       </View>
     )
   }
 
   return (
-    <>
+    <SafeAreaView style={{ flex:1, backgroundColor: colors.background }}>
       <Carousel
         data={items}
         renderItem={ ({item}) => renderItem(item) }
@@ -68,7 +68,7 @@ export const TutorialCarousel = ({ action }:Props) => {
         flexDirection:'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginHorizontal: 20
+        paddingHorizontal: 20
       }}>
         <Pagination
           activeDotIndex={activeIndex}
@@ -121,7 +121,7 @@ export const TutorialCarousel = ({ action }:Props) => {
           )
         }
       </View>
-    </>
+    </SafeAreaView>
   )
 }
 

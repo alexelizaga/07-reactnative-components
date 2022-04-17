@@ -40,7 +40,7 @@ export const darkTheme: ThemeState = {
   colors: {
     ...DarkTheme.colors,
     primary: '#8e83ff',
-    background: 'rgb(18,18,18)',
+    // background: 'rgb(18,18,18)',
     // card: 'string',
     // text: 'string',
     // border: 'string',
