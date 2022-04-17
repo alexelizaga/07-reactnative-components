@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useReducer } from 'react';
-import { useColorScheme } from 'react-native';
+// import { AppState } from 'react-native';
+import { Appearance, useColorScheme } from 'react-native-appearance';
 
 import { themeReducer, ThemeState, lightTheme, darkTheme } from './themeReducer';
 
@@ -13,15 +14,29 @@ export const ThemeContext = createContext({} as ThemeContextProps);
 
 export const ThemeProvider = ({ children }: any) => {
 
-  const colorScheme = useColorScheme();
+  const scheme = useColorScheme();
 
-  const [ theme, dispatch ] = useReducer(themeReducer, (colorScheme=== 'dark') ? darkTheme : lightTheme );
+  const [ theme, dispatch ] = useReducer(
+    themeReducer,
+    ( Appearance.getColorScheme() === 'dark') ? darkTheme : lightTheme
+  );
+
+  // useEffect(() => {
+  //   AppState.addEventListener('change', ( status ) => {
+  //     if( status === 'active' ){
+  //       ( Appearance.getColorScheme() === 'light' )
+  //         ? setLightTheme()
+  //         : setDarkTheme();
+  //     }
+  //   });
+  // }, []);
+  
 
   useEffect(() => {
-    (colorScheme=== 'dark')
-      ? darkTheme
-      : lightTheme;
-  }, [colorScheme])
+    (scheme=== 'dark')
+      ? setDarkTheme()
+      : setLightTheme();
+  }, [scheme]);
   
 
   const setDarkTheme = () => {
@@ -40,5 +55,6 @@ export const ThemeProvider = ({ children }: any) => {
     }}>
       { children }
     </ThemeContext.Provider>
+    
   )
 }

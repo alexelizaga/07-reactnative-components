@@ -1,5 +1,4 @@
 import { DarkTheme, DefaultTheme, Theme } from '@react-navigation/native';
-import { colors } from '../../theme/appTheme';
 
 type ThemeAction =
   | { type: 'set_light_theme'}

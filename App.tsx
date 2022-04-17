@@ -1,9 +1,9 @@
 import 'react-native-gesture-handler';
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 
 import { Navigation } from './src/router/Navigation';
-import { ThemeProvider, ThemeContext } from './src/context/theme/ThemeContext';
+import { ThemeProvider } from './src/context/theme/ThemeContext';
 import { TutorialCarousel } from './src/components/TutorialCarousel';
 
 const App = () => {
