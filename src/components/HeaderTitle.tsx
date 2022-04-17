@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { globalStyles } from '../theme/appTheme';
 import { useContext } from 'react';
-import { ThemeContext } from '../context/theme/ThemeContest';
+import { ThemeContext } from '../context/theme/ThemeContext';
 
 interface Props {
   title: string;

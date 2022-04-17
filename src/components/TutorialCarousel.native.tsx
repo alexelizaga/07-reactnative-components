@@ -6,7 +6,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { colors } from '../theme/appTheme';
 import { useAnimation } from '../hooks/useAnimation';
 import { items, Slide } from '../data/carouselItems';
-import { ThemeContext } from '../context/theme/ThemeContest';
+import { ThemeContext } from '../context/theme/ThemeContext';
 
 const { width: screenWidth } = Dimensions.get('window');
 

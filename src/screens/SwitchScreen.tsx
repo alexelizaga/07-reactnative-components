@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-import { ThemeContext } from '../context/theme/ThemeContest';
+import { ThemeContext } from '../context/theme/ThemeContext';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { CustomSwitch } from '../components/CustomSwitch';
 

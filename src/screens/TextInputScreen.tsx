@@ -6,7 +6,7 @@ import { HeaderTitle } from '../components/HeaderTitle';
 import { globalStyles } from '../theme/appTheme';
 import { useForm } from '../hooks/useForm';
 import { CustomSwitch } from '../components/CustomSwitch';
-import { ThemeContext } from '../context/theme/ThemeContest';
+import { ThemeContext } from '../context/theme/ThemeContext';
 
 export const TextInputScreen = () => {
 

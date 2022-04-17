@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { HeaderTitle } from '../components/HeaderTitle';
 import { globalStyles } from '../theme/appTheme';
-import { ThemeContext } from '../context/theme/ThemeContest';
+import { ThemeContext } from '../context/theme/ThemeContext';
 
 export const PullToRefreshScreeen = () => {
   const { theme:{colors} } = useContext(ThemeContext);

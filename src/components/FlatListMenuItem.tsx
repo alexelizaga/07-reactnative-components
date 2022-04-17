@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { MenuItem } from '../interfaces/appInterface';
-import { ThemeContext } from '../context/theme/ThemeContest';
+import { ThemeContext } from '../context/theme/ThemeContext';
 
 interface Props {
   menuItem: MenuItem;

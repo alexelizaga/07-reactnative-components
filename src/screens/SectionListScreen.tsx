@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import { View, Text, SectionList } from 'react-native';
 
-import { ThemeContext } from '../context/theme/ThemeContest';
+import { ThemeContext } from '../context/theme/ThemeContext';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { ItemSeparator } from '../components/ItemSeparator';
 import { globalStyles } from '../theme/appTheme';

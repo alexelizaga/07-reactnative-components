@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 
 import { HeaderTitle } from '../components/HeaderTitle';
 import { globalStyles } from '../theme/appTheme';
-import { ThemeContext } from '../context/theme/ThemeContest';
+import { ThemeContext } from '../context/theme/ThemeContext';
 
 export const ChangeThemeScreen = () => {
   const { theme, setDarkTheme, setLightTheme } = useContext(ThemeContext);

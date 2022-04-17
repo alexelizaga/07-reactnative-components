@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { View, StyleSheet, Animated, PanResponder } from 'react-native';
 import { useAnimation } from '../hooks/useAnimation';
-import { ThemeContext } from '../context/theme/ThemeContest';
+import { ThemeContext } from '../context/theme/ThemeContext';
 
 export const Animation102Screen = () => {
   const { theme:{colors} } = useContext(ThemeContext);

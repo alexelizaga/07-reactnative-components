@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { View, Text, Button, Modal } from 'react-native';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { globalStyles } from '../theme/appTheme';
-import { ThemeContext } from '../context/theme/ThemeContest';
+import { ThemeContext } from '../context/theme/ThemeContext';
 
 export const ModalScreen = () => {
   const { theme:{colors} } = useContext(ThemeContext);

@@ -5,7 +5,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { FadeInImage } from '../components/FadeInImage';
 import { HeaderTitle } from '../components/HeaderTitle';
 import { globalStyles } from '../theme/appTheme';
-import { ThemeContext } from '../context/theme/ThemeContest';
+import { ThemeContext } from '../context/theme/ThemeContext';
 
 export const InfiniteScrollScreen = () => {
 

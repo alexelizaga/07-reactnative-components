@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { ThemeContext } from '../context/theme/ThemeContest';
+import { ThemeContext } from '../context/theme/ThemeContext';
 
 import { HomeScreen } from '../screens/HomeScreen';
 import { Animation101Screen } from '../screens/Animation101Screen';
