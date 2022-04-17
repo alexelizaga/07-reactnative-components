@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, Animated, TouchableOpacity } from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -6,6 +6,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { colors } from '../theme/appTheme';
 import { useAnimation } from '../hooks/useAnimation';
 import { items, Slide } from '../data/carouselItems';
+import { ThemeContext } from '../context/theme/ThemeContest';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -14,6 +15,7 @@ interface Props {
 };
 
 export const TutorialCarousel = ({ action }:Props) => {
+  const { theme:{colors} } = useContext(ThemeContext);
   const [activeIndex, setActiveIndex] = useState(0);
   const { opacity, fadeIn} = useAnimation();
   const isVisible = useRef(false);
@@ -43,7 +45,7 @@ export const TutorialCarousel = ({ action }:Props) => {
             resizeMode: 'center'
           }}
         />
-        <Text style={styles.title}>{ item.title }</Text>
+        <Text style={[styles.title, {color: colors.primary}]}>{ item.title }</Text>
         <Text style={styles.subTitle}>{ item.desc }</Text>
       </View>
     )

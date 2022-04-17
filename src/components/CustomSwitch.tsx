@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
-import { View, Text, Switch, Platform } from 'react-native';
-import { colors } from '../theme/appTheme';
+import React, {useContext, useState} from 'react';
+import { View, Switch, Platform } from 'react-native';
+
+import { ThemeContext } from '../context/theme/ThemeContest';
 
 interface Props {
   isOn: boolean;
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export const CustomSwitch = ( { isOn, onChange }:Props ) => {
+  const { theme:{colors,moreColors} } = useContext(ThemeContext);
   const [isEnable, setIsEnabled] = useState( isOn );
   const toggleSwitch = () => {
     setIsEnabled(!isEnable);
@@ -21,12 +23,12 @@ export const CustomSwitch = ( { isOn, onChange }:Props ) => {
           ...Platform.select({
             android: { 
               thumbColor: (isEnable) ? colors.primary : "white",
-              trackColor:{ false: "#a5a5a5", true: colors.primaryLight }
+              trackColor:{ false: "#a5a5a5", true: moreColors.primaryLight }
             },
             web: {
               activeThumbColor: colors.primary,
               thumbColor: "white",
-              trackColor:{ false: "#a5a5a5", true: colors.primaryLight }
+              trackColor:{ false: "#a5a5a5", true: moreColors.primaryLight }
             }
           })
         }

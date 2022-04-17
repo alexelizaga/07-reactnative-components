@@ -1,4 +1,5 @@
 import { DarkTheme, DefaultTheme, Theme } from '@react-navigation/native';
+import { colors } from '../../theme/appTheme';
 
 type ThemeAction =
   | { type: 'set_light_theme'}
@@ -7,6 +8,10 @@ type ThemeAction =
 export interface ThemeState extends Theme {
   currentTheme: 'light' | 'dark';
   dividerColor?: string;
+  moreColors: {
+    primaryLight?: string,
+    primaryDark?: string
+  };
 }
 
 export const lightTheme: ThemeState = {
@@ -21,6 +26,10 @@ export const lightTheme: ThemeState = {
     // text: 'string',
     // border: 'string',
     // notification: 'string',
+  },
+  moreColors:{
+    primaryLight: '#8e83ff',
+    primaryDark: '#1a2d99',
   }
 }
 
@@ -30,12 +39,16 @@ export const darkTheme: ThemeState = {
   dividerColor: 'rgba(255,255,255,0.4)',
   colors: {
     ...DarkTheme.colors,
-    primary: '#5956cb',
+    primary: '#8e83ff',
     background: 'rgb(18,18,18)',
     // card: 'string',
     // text: 'string',
     // border: 'string',
     // notification: 'string',
+  },
+  moreColors:{
+    primaryLight: '#c3b3ff',
+    primaryDark: '#5956cb',
   }
 }
 

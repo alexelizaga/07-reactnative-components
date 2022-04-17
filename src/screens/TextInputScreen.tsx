@@ -10,7 +10,7 @@ import { ThemeContext } from '../context/theme/ThemeContest';
 
 export const TextInputScreen = () => {
 
-  const { theme:{colors} } = useContext(ThemeContext);
+  const { theme:{colors,dark} } = useContext(ThemeContext);
 
   const { onChange, form, isSubscribed} = useForm({
     name: '',
@@ -28,7 +28,7 @@ export const TextInputScreen = () => {
           <View style={ globalStyles.margin }>
             <HeaderTitle title='Text Input' />
             <TextInput
-              style={ [styles.input, {backgroundColor: colors.text, color: colors.background}] }
+              style={ [styles.input, dark && {backgroundColor: colors.text, color: colors.background}] }
               placeholder={'Nombre'}
               autoCorrect={false}
               autoCapitalize= "words"
@@ -36,7 +36,7 @@ export const TextInputScreen = () => {
             />
 
             <TextInput
-              style={ [styles.input, {backgroundColor: colors.text, color: colors.background}] }
+              style={ [styles.input, dark && {backgroundColor: colors.text, color: colors.background}] }
               placeholder={'Email'}
               autoCorrect={false}
               autoCapitalize= "none"
@@ -45,7 +45,7 @@ export const TextInputScreen = () => {
             />
 
             <TextInput
-              style={ [styles.input, {backgroundColor: colors.text, color: colors.background}] }
+              style={ [styles.input, dark && {backgroundColor: colors.text, color: colors.background}] }
               placeholder={'Phone'}
               onChangeText={(value) => onChange( value, 'phone')}
               keyboardType="phone-pad"
